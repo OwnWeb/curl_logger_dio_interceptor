@@ -1,0 +1,18 @@
+name: curl_logger_dio_interceptor
+description: A Flutter curl-command generator for Dio.
+version: 0.0.1
+homepage: https://github.com/OwnWeb/curl_logger_dio_interceptor
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  dio: ^4.0.1
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
