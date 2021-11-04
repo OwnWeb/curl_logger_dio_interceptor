@@ -1,5 +1,5 @@
 name: curl_logger_dio_interceptor
-description: A Flutter curl-command generator for Dio.
+description: Get your http requests printed as curl command in your terminal. Share them easily with your colleagues and import them in Postman!
 version: 0.0.1+2
 homepage: https://github.com/OwnWeb/curl_logger_dio_interceptor
 
