@@ -1,5 +1,7 @@
 # curl_logger_dio_interceptor
 
+[![pub package](https://img.shields.io/pub/v/curl_logger_dio_interceptor.svg)](https://pub.dartlang.org/packages/curl_logger_dio_interceptor)
+
 A Flutter curl-command generator for Dio.
 
 ![curl_logger_dio_interceptor log output](https://github.com/OwnWeb/curl_logger_dio_interceptor/raw/main/example/assets/example.png?raw=true)
