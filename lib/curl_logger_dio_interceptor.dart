@@ -5,8 +5,9 @@ import 'package:dio/dio.dart';
 
 class CurlLoggerDioInterceptor extends Interceptor {
   final bool? printOnSuccess;
+  final bool convertFormData;
 
-  CurlLoggerDioInterceptor({this.printOnSuccess});
+  CurlLoggerDioInterceptor({this.printOnSuccess, this.convertFormData = true});
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
@@ -49,6 +50,11 @@ class CurlLoggerDioInterceptor extends Interceptor {
     });
 
     if (options.data != null) {
+      // FormData can't be JSON-serialized, so keep only their fields attributes
+      if (options.data is FormData && convertFormData == true) {
+        options.data = Map.fromEntries(options.data.fields);
+      }
+
       final data = json.encode(options.data).replaceAll('"', '\\"');
       components.add('-d "$data"');
     }
