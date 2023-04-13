@@ -6,8 +6,10 @@ import 'package:dio/dio.dart';
 class CurlLoggerDioInterceptor extends Interceptor {
   final bool? printOnSuccess;
   final bool convertFormData;
+  final void Function(String msg)? logFunction;
 
-  CurlLoggerDioInterceptor({this.printOnSuccess, this.convertFormData = true});
+  CurlLoggerDioInterceptor(
+      {this.logFunction, this.printOnSuccess, this.convertFormData = true});
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
@@ -31,7 +33,12 @@ class CurlLoggerDioInterceptor extends Interceptor {
   void _renderCurlRepresentation(RequestOptions requestOptions) {
     // add a breakpoint here so all errors can break
     try {
-      log(_cURLRepresentation(requestOptions));
+      var msg = _cURLRepresentation(requestOptions);
+      if (logFunction != null) {
+        logFunction!(msg);
+      } else {
+        log(msg);
+      }
     } catch (err) {
       log('unable to create a CURL representation of the requestOptions');
     }
