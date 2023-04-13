@@ -1,3 +1,8 @@
+## 1.0.0
+
+* [BREAKING] Update dio to ^5.1.1
+* Fix example not building on latest android
+
 ## 0.0.3
 
 * Add `convertFormData` param (defaults: `true`) to convert `FormData` to plain `Map` so we can get
