@@ -55,8 +55,9 @@ class CurlLoggerDioInterceptor extends Interceptor {
         options.data = Map.fromEntries(options.data.fields);
       }
 
-      final data = json.encode(options.data).replaceAll('"', '\\"');
-      components.add('-d "$data"');
+      final data =
+          options.data is String ? options.data : json.encode(options.data);
+      components.add("-d '$data'");
     }
 
     components.add('"${options.uri.toString()}"');
