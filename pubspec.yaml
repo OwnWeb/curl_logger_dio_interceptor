@@ -1,6 +1,6 @@
 name: curl_logger_dio_interceptor
 description: Get your http requests printed as curl command in your terminal. Share them easily with your colleagues and import them in Postman!
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/OwnWeb/curl_logger_dio_interceptor
 
 environment:

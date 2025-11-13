@@ -1,3 +1,6 @@
+## 1.0.1
+* Fixed JSON escape for POST/PUT requests body data.
+
 ## 1.0.0
 
 * [BREAKING] Update dio to ^5.1.1
