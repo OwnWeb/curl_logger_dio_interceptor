@@ -22,21 +22,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        ElevatedButton(
-          onPressed: () {
-            _dio.post('https://flutter.dev/some404',
-                options: Options(headers: {'Auth': 'SOME-TOKEN'}));
-          },
-          child: const Text('Run POST errored request'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                _dio.post(
+                  'https://flutter.dev/some404',
+                  options: Options(
+                    headers: {'Auth': 'SOME-TOKEN'},
+                  ),
+                );
+              },
+              child: const Text('Run POST errored request'),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'After pressing the button, go in your terminal and copy the curl code. Paste it in your terminal. Tada ✨',
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
-        const SizedBox(height: 20),
-        const Text(
-          'After pressing the button, go in your terminal and copy the curl code. Paste it in your terminal. Tada ✨',
-          textAlign: TextAlign.center,
-        )
-      ]),
-    ));
+      ),
+    );
   }
 }

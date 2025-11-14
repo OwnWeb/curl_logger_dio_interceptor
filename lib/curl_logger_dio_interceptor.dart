@@ -6,11 +6,16 @@ import 'package:dio/dio.dart';
 class CurlLoggerDioInterceptor extends Interceptor {
   final bool? printOnSuccess;
   final bool convertFormData;
+  final List<String>? ignoredHeaders;
 
-  CurlLoggerDioInterceptor({this.printOnSuccess, this.convertFormData = true});
+  CurlLoggerDioInterceptor({
+    this.printOnSuccess,
+    this.convertFormData = true,
+    this.ignoredHeaders,
+  });
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     _renderCurlRepresentation(err.requestOptions);
 
     return handler.next(err); //continue
@@ -39,12 +44,17 @@ class CurlLoggerDioInterceptor extends Interceptor {
 
   String _cURLRepresentation(RequestOptions options) {
     List<String> components = ['curl -i'];
+    List<String> _ignoredHeaders = [
+      'Cookie',
+      ...?ignoredHeaders,
+    ];
+
     if (options.method.toUpperCase() != 'GET') {
       components.add('-X ${options.method}');
     }
 
     options.headers.forEach((k, v) {
-      if (k != 'Cookie') {
+      if (!_ignoredHeaders.contains(k)) {
         components.add('-H "$k: $v"');
       }
     });
